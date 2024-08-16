@@ -1,7 +1,7 @@
 'use client'
 
-import { useUser } from "@clerk/nextjs"
-import { Container, Button, Typography, Box, TextField, Paper, Grid, Card, CardActionArea, CardContent, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions } from "@mui/material"
+import { SignedIn,SignedOut, UserButton, useUser } from "@clerk/nextjs"
+import { AppBar, Toolbar,Container, Button, Typography, Box, TextField, Paper, Grid, Card, CardActionArea, CardContent, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions } from "@mui/material"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
 import { db } from "@/firebase"
@@ -74,7 +74,26 @@ export default function Generate() {
         router.push['/flashcards']
     }
 
-    return <Container maxWidth="md">
+    return <Box minHeight={'100vh'}>
+        <AppBar sx={{ position: "sticky", bgcolor: "#0A082Dff" }}>
+            <Toolbar color='red'>
+                <Typography variant="h6" style={{ flexGrow: 1, color: '#FFC857' }} onClick={() => window.location.href = 'http://localhost:3000/'}>
+                    <strong>Flashcard SaaS</strong>
+                </Typography>
+                <SignedOut>
+                    <Button color="inherit" href="/sign-in">
+                        Login
+                    </Button>
+                    <Button color="inherit" href="/sign-up">
+                        Sign Up
+                    </Button>
+                </SignedOut>
+                <SignedIn>
+                    <UserButton />
+                </SignedIn>
+            </Toolbar>
+        </AppBar>
+    <Container maxWidth='100vw' >
         <Box
             sx={{
                 mt: 4,
@@ -85,17 +104,19 @@ export default function Generate() {
             }}
         >
             <Typography variant="h4">Generate flashcards</Typography>
-            <Paper sx={{ p: 4, width: '100%' }}>
+            <Typography variant="h6" mb={'2em'}>Any topic, Any time!</Typography>
+                <Paper sx={{ p: 4, width: '100%', bgcolor: '#717AB2ff', width: '90vw' }}>
                 <TextField
                     value={text}
                     onChange={(e) => setText(e.target.value)}
                     label="Enter Text"
-                    fullWidth
+                        fullWidth
                     multiline
                     rows={4}
                     variant="outlined"
                     sx={{
                         mb: 2,
+                        
                     }}
                 />
                 <Button
@@ -112,7 +133,7 @@ export default function Generate() {
 
         {flashcards.length > 0 && (
             <Box sx={{ mt: 4 }}>
-                <Typography variant="h5">Flashcards Preview</Typography>
+                <Typography variant="h5" mb='1em' align="center">Flashcards Preview</Typography>
                 <Grid container spacing={3}>
                     {flashcards.map((flashcard, index) => (
                         <Grid item xs={12} sm={6} md={4} key={index}>
@@ -121,15 +142,19 @@ export default function Generate() {
                                     onClick={() => {
                                         handleCardClick(index)
                                     }}
+                                    
                                 >
-                                    <CardContent>
+                                    <CardContent sx={{ borderColor: "#FFC857"}} >
                                         <Box
                                             sx ={{
+                                                overflow:'scroll',
+                                                bgcolor: '#717AB2ff',
                                                 perspective: '1000px',
                                                 '& > div' : {
                                                     transition: 'transform 0.6s',
                                                     transformStyle: 'preserve-3d',
                                                     position: 'relative',
+                                                    backfaceVisibility: 'hidden',
                                                     width: '100%',
                                                     height: '200px',
                                                     boxShadow: '0 4px 8px 0 rgba(0,0,0, 0.2)',
@@ -172,7 +197,7 @@ export default function Generate() {
                         </Grid>
                     ))}
                 </Grid>
-                <Box sx={{mt: 4, display: 'flex', justifyContent: 'center'}}>
+                <Box sx={{my: 4, display: 'flex', justifyContent: 'center'}}>
                     <Button variant='contained' color='secondary' onClick={handleOpen}>
                         Save
                     </Button>
@@ -203,4 +228,5 @@ export default function Generate() {
             </DialogActions>
          </Dialog>
     </Container>
+    </Box>
 }

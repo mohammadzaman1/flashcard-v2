@@ -2,8 +2,10 @@
 import Image from "next/image";
 import getStripe from "@/utils/get-stripe";
 import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
-import { AppBar, Box, Button, Container, Grid, Toolbar, Typography } from "@mui/material";
+import { AppBar, Box, Button, ThemeProvider, Container, Grid, Toolbar, Typography } from "@mui/material";
+
 import Head from 'next/head'
+import { useTheme } from "@emotion/react";
 
 export default function Home() {
   const handleSubmit = async () => {
@@ -30,17 +32,18 @@ export default function Home() {
       console.warn(error.message);
     }
   }
+
   return (
-    // fix the width so it covers the webpage fully
+    
     <Box width="100vw"> 
       <Head>
         <title>Flashcard SaaS</title>
         <meta name = "description" content = "Create a flashcard from your text" />
       </Head>
 
-      <AppBar sx={{ position: "sticky", bgcolor: "#FFB6B9"}}>
+      <AppBar sx={{ position: "sticky", bgcolor: "#0A082Dff"}}>
         <Toolbar color='red'>
-          <Typography variant="h6" style={{ flexGrow: 1, color: '#4A4E69',}}>
+          <Typography variant="h6" style={{ flexGrow: 1, color: '#FFC857',}}>
             <strong>Flashcard SaaS</strong>
             </Typography>
           <SignedOut>
@@ -64,7 +67,7 @@ export default function Home() {
         }}
         
       >
-        <Typography variant="h2" gutterBottom>
+        <Typography variant="h2" gutterBottom >
           <strong>Welcome to Flashcard SaaS</strong>
         </Typography>
         <Typography variant="h5" gutterBottom>
@@ -75,16 +78,16 @@ export default function Home() {
           Get Started
         </Button>
       </Box>
-      <Box sx={{my: 6}}
+      <Box sx={{my: 3}}
         p={3}
       >
         <Typography variant="h4" gutterBottom> 
           Features
         </Typography>
-        <Grid container spacing={4}>
+        <Grid container spacing={8}>
           <Grid item xs={12} md ={4}>
             <Typography variant="h6" gutterBottom>
-              User-Friendly Input Fields
+              <strong>User-Friendly Input Fields</strong>
             </Typography>
             <Typography>
               {' '}
@@ -93,7 +96,7 @@ export default function Home() {
           </Grid>
           <Grid item xs={12} md ={4}>
             <Typography variant="h6" gutterBottom>
-              Smart Flashcards
+              <strong>Smart Flashcards</strong>
             </Typography>
             <Typography>
               {' '}
@@ -103,7 +106,7 @@ export default function Home() {
           </Grid>
           <Grid item xs={12} md ={4}>
             <Typography variant="h6" gutterBottom>
-              Accessible Anywhere
+            <strong>Accessible Anywhere</strong>
             </Typography>
             <Typography>
               {' '}
@@ -114,7 +117,7 @@ export default function Home() {
         </Grid>
       </Box>
       <Box sx={{my: 6, textAlign: 'center', p:'2em'}}>
-        <Typography variant="h4" gutterBottom>
+        <Typography variant="h4" gutterBottom mb={4}>
           Pricing
         </Typography>
         <Grid container spacing={4}>
@@ -125,6 +128,8 @@ export default function Home() {
               border: '1px solid',
               borderColor: 'grey.300',
               borderRadius: 2,
+              boxShadow: 5,
+
             }}
           >
             <Typography variant="h5" gutterBottom>
@@ -137,7 +142,7 @@ export default function Home() {
               {' '}
               Access to basic flash card features & limited storage
             </Typography>
-            <Button variant="contained" color="primary" sx={{mt: 2}}>
+              <Button variant="contained" color="primary" sx={{mt: 2}}>
               Choose Basic
             </Button>
           </Box>
@@ -149,6 +154,8 @@ export default function Home() {
               border: '1px solid',
               borderColor: 'grey.300',
               borderRadius: 2,
+              boxShadow: 5,
+
             }}
           >
             <Typography variant="h5" gutterBottom>
@@ -169,5 +176,6 @@ export default function Home() {
         </Grid>
       </Box>
     </Box>
+    
   )
 }

@@ -4,5 +4,6 @@
   margin: 0;
 }
 body{
-  background-color: #EAE2F8;
+  background: linear-gradient(225deg, hsla(267, 95%, 24%, 1) 0%, hsla(18, 75%, 30%, 1) 100%);
+  color: white;
 }

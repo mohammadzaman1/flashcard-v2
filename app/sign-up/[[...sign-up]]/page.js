@@ -4,17 +4,12 @@ import Link from 'next/link'
 
 export default function SignUpPage() {
     return (
-    <Container maxWidth="100vw">
+    <Box width="100vw" height='100vh'>
         {/* background color for app bar can change here */}
-            <AppBar position="static" sx={{ backgroundColor: '#3f51b'}}>
-            <Toolbar>
-                <Typography 
-                    variant='h6' 
-                    sx={{
-                        flexGrow: 1,
-                    }}
-                >
-                    Flashcard SaaS
+            <AppBar sx={{ position: "sticky", bgcolor: "#0A082Dff" }}>
+                <Toolbar color='red'>
+                    <Typography variant="h6" style={{ flexGrow: 1, color: '#FFC857' }}>
+                        <strong>Flashcard SaaS</strong>
                 </Typography>
                 <Button color="inherit">
                     <Link href="/sign-in" passHref>
@@ -34,10 +29,11 @@ export default function SignUpPage() {
             flexDirection="column"
             alignItems="center"
             justifyContent="center"
+            mt="2em"
         >
-            <Typography variant="h4">Sign Up</Typography>
+            <Typography variant="h4" mb="1em">Sign Up</Typography>
             <SignUp />
         </Box>
-    </Container>
+    </Box>
     )
 }
