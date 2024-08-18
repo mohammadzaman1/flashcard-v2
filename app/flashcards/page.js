@@ -4,8 +4,9 @@ import { useEffect, useState } from "react"
 import { collection, doc, getDoc, setDoc } from "firebase/firestore"
 import { db } from "@/firebase"
 import { useRouter } from "next/navigation"
-import { Card, CardActionArea, CardContent, Box, Grid, Typography, AppBar,Toolbar, Container } from "@mui/material"
-
+import { Card, CardActionArea, IconButton, CardContent, Box, Grid, Typography, AppBar,Toolbar, Container } from "@mui/material"
+import SaveIcon from '@mui/icons-material/Save'
+import HomeIcon from '@mui/icons-material/Home'
 
 export default function Flashcard() {
     const {isLoaded, isSignedIn, user} = useUser()

@@ -4,9 +4,11 @@ import { useUser, SignedIn, UserButton } from "@clerk/nextjs"
 import { useEffect, useState } from "react"
 import { collection, doc, getDocs } from "firebase/firestore"
 import { db } from "@/firebase"
-import SaveIcon from '@mui/icons-material/Save'
 import { useSearchParams } from "next/navigation"
-import { AppBar, Toolbar, Button, Typography, Box, TextField, Paper, Grid, Card, CardActionArea, CardContent } from "@mui/material"
+import { AppBar, Toolbar, Button, Typography, Box, IconButton, TextField, Paper, Grid, Card, CardActionArea, CardContent } from "@mui/material"
+import SaveIcon from '@mui/icons-material/Save'
+import HomeIcon from '@mui/icons-material/Home'
+
 
 export default function Flashcard () {
     const {isLoaded, isSignedIn, user} = useUser()
@@ -55,9 +57,9 @@ export default function Flashcard () {
                         <IconButton color="primary" onClick={() => window.location.href = '/'}>
                             <HomeIcon />
                         </IconButton>
-                        <Button variant="secondary" color="primary" sx={{ mx: 2 }} endIcon={<SaveIcon />} onClick={() => window.location.href = '/flashcards'}>
-                            Saved
-                        </Button>
+                        <IconButton color="primary" sx={{ mr: 2 }} onClick={() => window.location.href = '/flashcards'}>
+                            <SaveIcon />
+                        </IconButton>
                         <UserButton />
                     </SignedIn>
                 </Toolbar>
