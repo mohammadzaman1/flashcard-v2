@@ -2,10 +2,11 @@
 import Image from "next/image";
 import getStripe from "@/utils/get-stripe";
 import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
-import { AppBar, Box, Button, ThemeProvider, Container, Grid, Toolbar, Typography } from "@mui/material";
-
+import { AppBar, Box, Button, IconButton, Grid, Toolbar, Typography } from "@mui/material";
+import SaveIcon from '@mui/icons-material/Save';
 import Head from 'next/head'
 import { useTheme } from "@emotion/react";
+
 
 export default function Home() {
   const handleSubmit = async () => {
@@ -37,14 +38,14 @@ export default function Home() {
     
     <Box width="100vw"> 
       <Head>
-        <title>Flashcard SaaS</title>
-        <meta name = "description" content = "Create a flashcard from your text" />
+        <title>FlashCraft AI</title>
+        <meta name = "description" content = "Create flashcards from your text" />
       </Head>
 
       <AppBar sx={{ position: "sticky", bgcolor: "#0A082Dff"}}>
         <Toolbar color='red'>
-          <Typography variant="h6" style={{ flexGrow: 1, color: '#FFC857',}}>
-            <strong>Flashcard SaaS</strong>
+          <Typography variant="h6" style={{ flexGrow: 1, color: '#FFC857', fontFamily: 'Jersey 10'}}>
+            <strong>FlashCraft AI</strong>
             </Typography>
           <SignedOut>
             <Button color="inherit" href="/sign-in"> 
@@ -55,6 +56,9 @@ export default function Home() {
             </Button>
           </SignedOut>
           <SignedIn>
+            <IconButton aria-label="Saved Collections"  color="primary" sx={{ mr: 2 }} onClick={() => window.location.href = '/flashcards'}>
+              <SaveIcon />
+            </IconButton>
             <UserButton />
           </SignedIn>
         </Toolbar>
@@ -68,7 +72,7 @@ export default function Home() {
         
       >
         <Typography variant="h2" gutterBottom >
-          <strong>Welcome to Flashcard SaaS</strong>
+          <strong>Welcome to FlashCraft AI</strong>
         </Typography>
         <Typography variant="h5" gutterBottom>
           {' '}
@@ -101,7 +105,7 @@ export default function Home() {
             <Typography>
               {' '}
               Our AI breaks down your text into concise
-              flashcards, perfect for studying1
+              flashcards, perfect for studying!
             </Typography>
           </Grid>
           <Grid item xs={12} md ={4}>
@@ -136,7 +140,7 @@ export default function Home() {
               Basic
             </Typography>
             <Typography variant="h6"gutterBottom>
-              $5 / Month
+              Free
             </Typography>
             <Typography>
               {' '}

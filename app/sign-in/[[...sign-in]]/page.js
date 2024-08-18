@@ -9,7 +9,7 @@ export default function SignUpPage() {
             <AppBar sx={{ position: "sticky", bgcolor: "#0A082Dff" }}>
                 <Toolbar color='red'>
                     <Typography variant="h6" style={{ flexGrow: 1, color: '#FFC857' }}>
-                        <strong>Flashcard SaaS</strong>
+                        <strong>FlashCraft AI</strong>
                 </Typography>
                 <Button color="inherit">
                     <Link href="/sign-in" passHref>

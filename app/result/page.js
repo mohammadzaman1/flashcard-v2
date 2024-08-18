@@ -67,8 +67,8 @@ const ResultPage = () => {
         );
     }
     return (
-        <Container 
-            maxWidth="100vw" 
+        <Box 
+            height='100vh' 
             sx={{
                 textAlign: 'center', 
                 mt: 4
@@ -95,7 +95,7 @@ const ResultPage = () => {
                     </Box>
                 </>
             )}
-        </Container>
+        </Box>
     );    
 }
 

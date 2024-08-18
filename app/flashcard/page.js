@@ -1,12 +1,12 @@
 'use client'
 
-import { useUser } from "@clerk/nextjs"
+import { useUser, SignedIn, UserButton } from "@clerk/nextjs"
 import { useEffect, useState } from "react"
-import { collection, doc, getDoc, getDocs } from "firebase/firestore"
+import { collection, doc, getDocs } from "firebase/firestore"
 import { db } from "@/firebase"
-
+import SaveIcon from '@mui/icons-material/Save'
 import { useSearchParams } from "next/navigation"
-import { Container, Button, Typography, Box, TextField, Paper, Grid, Card, CardActionArea, CardContent } from "@mui/material"
+import { AppBar, Toolbar, Button, Typography, Box, TextField, Paper, Grid, Card, CardActionArea, CardContent } from "@mui/material"
 
 export default function Flashcard () {
     const {isLoaded, isSignedIn, user} = useUser()
@@ -25,11 +25,13 @@ export default function Flashcard () {
 
             docs.forEach((doc) => {
                 flashcards.push({id: doc.id, ...doc.data()});
+                
             });
             setFlashcards(flashcards);
         }
         getFlashcard();
     }, [user, search]);
+
 
     const handleCardClick = (id) => {
         setFlipped((prev) => ({
@@ -43,7 +45,22 @@ export default function Flashcard () {
     }
 
     return (
-        <Container maxWidth="100vw">
+        <Box maxWidth="100vw">
+            <AppBar sx={{ position: "sticky", bgcolor: "#0A082Dff" }}>
+                <Toolbar color='red'>
+                    <Typography variant="h6" style={{ flexGrow: 1, color: '#FFC857' }} onClick={() => window.location.href = 'http://localhost:3000/'}>
+                        <strong>FlashCraft AI</strong>
+                    </Typography>
+                    <SignedIn>
+                        <Button variant="secondary" color="primary" sx={{ mx: 2 }} endIcon={<SaveIcon />} onClick={() => window.location.href = '/flashcards'}>
+                            Saved
+                        </Button>
+                        <UserButton />
+                    </SignedIn>
+                </Toolbar>
+            </AppBar>
+            <Typography variant="h4" align="center" fontFamily={'Merriweather'} sx={{ mt: 4, }}>
+                {} </Typography>
             <Grid container spacing={3} sx={{mt: 4}}>
                     {flashcards.map((flashcard, index) => (
                         <Grid item xs={12} sm={6} md={4} key={index}>
@@ -53,12 +70,16 @@ export default function Flashcard () {
                                         handleCardClick(index)
                                     }}
                                 >
-                                    <CardContent>
+                                    <CardContent sx={{ bgcolor: "#fff" }}>
                                         <Box
                                             sx ={{
+                                                overflow:'auto',
+                                                bgcolor: '#717AB2ff',
                                                 perspective: '1000px',
                                                 '& > div' : {
+                                                    
                                                     transition: 'transform 0.6s',
+                                                    backfaceVisibility: 'hidden',
                                                     transformStyle: 'preserve-3d',
                                                     position: 'relative',
                                                     width: '100%',
@@ -103,6 +124,6 @@ export default function Flashcard () {
                         </Grid>
                     ))}
             </Grid>
-        </Container>
+        </Box>
     )
 }

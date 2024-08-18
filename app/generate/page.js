@@ -1,11 +1,13 @@
 'use client'
 
 import { SignedIn,SignedOut, UserButton, useUser } from "@clerk/nextjs"
-import { AppBar, Toolbar,Container, Button, Typography, Box, TextField, Paper, Grid, Card, CardActionArea, CardContent, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions } from "@mui/material"
+import { AppBar, IconButton, Toolbar,Container, Button, Typography, Box, TextField, Paper, Grid, Card, CardActionArea, CardContent, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions } from "@mui/material"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
 import { db } from "@/firebase"
 import { doc, getDoc, collection, setDoc, writeBatch } from "firebase/firestore"
+import SaveIcon from '@mui/icons-material/Save'
+import HomeIcon from '@mui/icons-material/Home'
 
 export default function Generate() {
     const { isLoaded, isSignedIn, user } = useUser()
@@ -78,7 +80,7 @@ export default function Generate() {
         <AppBar sx={{ position: "sticky", bgcolor: "#0A082Dff" }}>
             <Toolbar color='red'>
                 <Typography variant="h6" style={{ flexGrow: 1, color: '#FFC857' }} onClick={() => window.location.href = 'http://localhost:3000/'}>
-                    <strong>Flashcard SaaS</strong>
+                    <strong>FlashCraft AI</strong>
                 </Typography>
                 <SignedOut>
                     <Button color="inherit" href="/sign-in">
@@ -89,6 +91,11 @@ export default function Generate() {
                     </Button>
                 </SignedOut>
                 <SignedIn>
+                    <IconButton color="primary" onClick={() => window.location.href = '/flashcards'}>
+                        <HomeIcon />
+                    </IconButton><IconButton color="primary" sx={{ mr:2 }} onClick={() => window.location.href = '/flashcards'}>
+                        <SaveIcon />
+                    </IconButton>
                     <UserButton />
                 </SignedIn>
             </Toolbar>
@@ -108,6 +115,7 @@ export default function Generate() {
                 <Paper sx={{ p: 4, width: '100%', bgcolor: '#717AB2ff', width: '90vw' }}>
                 <TextField
                     value={text}
+                    
                     onChange={(e) => setText(e.target.value)}
                     label="Enter Text"
                         fullWidth
@@ -144,10 +152,10 @@ export default function Generate() {
                                     }}
                                     
                                 >
-                                    <CardContent sx={{ borderColor: "#FFC857"}} >
+                                    <CardContent sx={{ bgcolor: "#FFC857"}} >
                                         <Box
                                             sx ={{
-                                                overflow:'scroll',
+                                                overflow:'auto',
                                                 bgcolor: '#717AB2ff',
                                                 perspective: '1000px',
                                                 '& > div' : {
