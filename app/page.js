@@ -36,7 +36,7 @@ export default function Home() {
 
   return (
     
-    <Box width="100vw"> 
+    <Box width="100vw" height='auto'> 
       <Head>
         <title>FlashCraft AI</title>
         <meta name = "description" content = "Create flashcards from your text" />

@@ -37,14 +37,19 @@ export default function Flashcard() {
     }
 
     return (
-        <Box height='100vh'>
+        <Box width='100wh' height='100vh'>
             <AppBar sx={{ position: "sticky", bgcolor: "#0A082Dff" }}>
                 <Toolbar color='red'>
                     <Typography variant="h6" style={{ flexGrow: 1, color: '#FFC857' }} onClick={() => window.location.href = 'http://localhost:3000/'}>
                         <strong>FlashCraft AI</strong>
                     </Typography>
                     <SignedIn>
-                        
+                        <IconButton color="primary" onClick={() => window.location.href = '/'}>
+                            <HomeIcon />
+                        </IconButton>
+                        <IconButton color="primary" sx={{ mr: 2 }} onClick={() => window.location.href = '/flashcards'}>
+                            <SaveIcon />
+                        </IconButton>
                         <UserButton />
                     </SignedIn>
                 </Toolbar>

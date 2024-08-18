@@ -45,13 +45,16 @@ export default function Flashcard () {
     }
 
     return (
-        <Box maxWidth="100vw">
+        <Box width="100vw">
             <AppBar sx={{ position: "sticky", bgcolor: "#0A082Dff" }}>
                 <Toolbar color='red'>
                     <Typography variant="h6" style={{ flexGrow: 1, color: '#FFC857' }} onClick={() => window.location.href = 'http://localhost:3000/'}>
                         <strong>FlashCraft AI</strong>
                     </Typography>
                     <SignedIn>
+                        <IconButton color="primary" onClick={() => window.location.href = '/'}>
+                            <HomeIcon />
+                        </IconButton>
                         <Button variant="secondary" color="primary" sx={{ mx: 2 }} endIcon={<SaveIcon />} onClick={() => window.location.href = '/flashcards'}>
                             Saved
                         </Button>
@@ -61,6 +64,8 @@ export default function Flashcard () {
             </AppBar>
             <Typography variant="h4" align="center" fontFamily={'Merriweather'} sx={{ mt: 4, }}>
                 {} </Typography>
+            
+
             <Grid container spacing={3} sx={{mt: 4}}>
                     {flashcards.map((flashcard, index) => (
                         <Grid item xs={12} sm={6} md={4} key={index}>
