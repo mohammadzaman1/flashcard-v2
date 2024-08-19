@@ -116,7 +116,7 @@ export default function Generate() {
                     <Paper sx={{ p: 4, width: '100%', bgcolor: '#717AB2ff', width: '90vw' }}>
                     <TextField
                         value={text}
-                        
+                        color="warning"
                         onChange={(e) => setText(e.target.value)}
                         label="Enter Text"
                             fullWidth
@@ -127,6 +127,7 @@ export default function Generate() {
                             mb: 2,
                             
                         }}
+                        
                     />
                     <Button
                         variant="contained"
@@ -142,7 +143,33 @@ export default function Generate() {
 
             {flashcards.length > 0 && (
                 <Box sx={{ mt: 4 }}>
+                    
                     <Typography variant="h5" mb='1em' align="center">Flashcards Preview</Typography>
+                    <Box>
+                    <Dialog open={open} onClose={handleClose}>
+                        <DialogTitle>Save Flashcards</DialogTitle>
+                        <DialogContent>
+                            <DialogContentText>
+                                    Please enter a name for your flashcards collection
+                            </DialogContentText>
+                            <TextField
+                                    autoFocus
+                                    margin="dense"
+                                    label="Collection Name"
+                                    type="text"
+                                    fullWidth
+                                    value={name}
+                                    onChange={(e) => setName(e.target.value)}
+                                    variant="outlined"
+                                    mt={2}
+                            />
+                        </DialogContent>
+                        <DialogActions>
+                            <Button onClick={handleClose}>Cancel</Button>
+                            <Button onClick={saveFlashcards}>Save</Button>
+                        </DialogActions>
+                    </Dialog>
+                    </Box>
                     <Grid container spacing={3}>
                         {flashcards.map((flashcard, index) => (
                             <Grid item xs={12} sm={6} md={4} key={index}>
@@ -214,7 +241,7 @@ export default function Generate() {
                 </Box>
             )}
 
-            <Dialog open={open} onClose={handleClose}>
+            {/* <Dialog open={open} onClose={handleClose}>
                 <DialogTitle>Save Flashcards</DialogTitle>
                 <DialogContent>
                     <DialogContentText>
@@ -236,7 +263,7 @@ export default function Generate() {
                     <Button onClick={handleClose}>Cancel</Button>
                     <Button onClick={saveFlashcards}>Save</Button>
                 </DialogActions>
-            </Dialog>
+            </Dialog> */}
         </Container>
     </Box>
 }

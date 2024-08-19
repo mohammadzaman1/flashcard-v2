@@ -146,8 +146,8 @@ export default function Home() {
               {' '}
               Access to basic flash card features & limited storage
             </Typography>
-              <Button variant="contained" color="primary" sx={{mt: 2}}>
-              Choose Basic
+            <Button variant="contained" color="primary" sx={{ mt: 2 }} onClick={() => window.location.href = '/generate'}>
+              Generate
             </Button>
           </Box>
           </Grid>
@@ -166,7 +166,7 @@ export default function Home() {
               Pro
             </Typography>
             <Typography variant="h6"gutterBottom>
-              $10 / Month
+              $5 / Month
             </Typography>
             <Typography>
               {' '}
