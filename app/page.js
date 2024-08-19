@@ -5,7 +5,6 @@ import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import { AppBar, Box, Button, IconButton, Grid, Toolbar, Typography } from "@mui/material";
 import SaveIcon from '@mui/icons-material/Save';
 import Head from 'next/head'
-import { useTheme } from "@emotion/react";
 
 
 export default function Home() {
@@ -35,7 +34,6 @@ export default function Home() {
   }
 
   return (
-    
     <Box width="100vw" height='auto'> 
       <Head>
         <title>FlashCraft AI</title>
@@ -71,7 +69,7 @@ export default function Home() {
         }}
         
       >
-        <Typography variant="h2" gutterBottom >
+        <Typography variant="h2" gutterBottom fontFamily={'Merriweather'}>
           <strong>Welcome to FlashCraft AI</strong>
         </Typography>
         <Typography variant="h5" gutterBottom>
